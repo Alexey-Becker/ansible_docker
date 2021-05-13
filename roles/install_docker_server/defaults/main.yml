@@ -1,0 +1,4 @@
+---
+# defaults file for install_docker_server
+
+host_key_checking : false

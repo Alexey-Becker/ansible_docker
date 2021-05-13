@@ -1,0 +1,41 @@
+---
+# tasks file for install_docker_server
+
+- name: 1. Install dependencies
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+- name: 2. Add GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name: 3. Add docker repository to apt
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+- name: 4. Install Docker
+  apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+- name: 5. Assure the docker is enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+- name: 6. Download the Docker Compose binary from the Compose repository release page on GitHub
+  get_url: 
+    url: https://github.com/docker/compose/releases/download/1.29.1/docker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: '0755'

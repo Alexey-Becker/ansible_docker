@@ -1,0 +1,7 @@
+---
+- name: Installation the Docker containerisation Software on DOCKER Servers
+  hosts: DOCKER_SERVER
+  become: true
+  
+  roles:
+    - install_docker_server

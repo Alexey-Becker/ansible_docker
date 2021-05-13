@@ -1,0 +1,5 @@
+[DOCKER_SERVER]
+docker-1  ansible_host=192.168.x.x
+
+[DOCKER_USER]
+docker-1  ansible_host=192.168.x.x

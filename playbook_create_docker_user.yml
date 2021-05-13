@@ -1,0 +1,21 @@
+---
+- name: Creation a new docker User with import of my ssh key into authorized_key
+  hosts: DOCKER_USER
+  become: yes
+  tasks:
+  - name: 1. Create a new group
+    ansible.builtin.group: name=docker state=present
+      
+  - name: 1. Add the user 'docker' with a bash shell and Group 'docker'
+    ansible.builtin.user:
+      name: docker
+      password: $6$NyFjUBHOxYba$pOV6zXYy/VeDUoxOQbnXiS/ZCVfrQjZhQjxr4jf0NPMgGUqPbzq/1.QZ.8r95/2sSIHsHZ/oGAI7P8Tt.CrlQ.
+      comment: Docker User
+      shell: /bin/bash
+      groups: docker,sudo
+
+  - name: 2. Set authorized key
+    authorized_key:
+      user: docker
+      state: present
+      key: "{{ lookup('file', '/keys/id_rsa.pub') }}"
