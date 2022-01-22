@@ -1,40 +1,40 @@
-Voraussetzung:
-- Installatierte Ubuntu 20.04
-- Erreichbarkeit über netzwerk SSH
-- User mit SUDO Rechte
-- In der Datei "./hosts.txt" die IP Adressen anpassen.
-  Hier dürfen mehrere Systeme hinterlegt werden, dann erfolgt die Installation automatisiert auf mehreren Systemen.
-- In der Datei "./gorup_vars/DOCKER_SERVER" & "ansible_ssh_private_key_file" den Parameter "ansible_ssh_private_key_file" anpassen.
-  Hier den Pfad zu eigenem SSH private Key hinterlegen. (Example /home/user/.ssh/id_rsa)
-- In der Datei "./playbook_create_docker_user.yml" den Parameter "key" unter "autorized_key" anpassen.
-  Hier den Pfad zu eigenem SSH public Key hinterlegen. (Example /home/user/.ssh/id_rsa.pub)
+Requirements:
+- OS Ubuntu 20.04
+- Host mus be reacheble over network over SSH
+- User with SUDO rights
+- Change ip address in this file "./hosts.txt".
+  Several IP addresses can be entered here, then the installation will be carried out on several systems at the same time
+- Change this parameter "ansible_ssh_private_key_file" in folowing files "./gorup_vars/DOCKER_SERVER" & "ansible_ssh_private_key_file".
+  As value enter the path to your own SSH private key here. (Example /home/user/.ssh/id_rsa)
+- In task 2. "autorized_key" change parameter "key" in folowing file "./playbook_create_docker_user.yml".
+  As value enter the path to your own SSH public key here. (Example /home/user/.ssh/id_rsa.pub)
 
 Reihenfolge:
-1. SSH Key auf dem remote Host ohne Docker User hinterlegen.
-Hier die richtige IP Adresse des Zielsystems einsetzen.
+1. Copy SSH public key on remote host without docker user.
+Enter the correct IP address of the target system here.
 
 --
 ssh-copy-id user@192.168.x.x
 --
 
-1.1 Prüfen ob man sich ohne EIngabe des Kennworts per SSH anmelden kann.
-Hier die richtige IP Adresse des Zielsystems einsetzen.
+1.1 Verify whether you can log in via SSH without entering the password .
+Enter the correct IP address of the target system here.
 
 --
 ssh user@192.168.x.x
 --
 
-2. Docker User mit SUDO Rechte erstellen, SSH Key hinterlegen.
-Hier wird Benutzer "docker" mit Passwort "docker" angelegt.
-!!! bei dem Befehl muss das Kennwort des "user" eingegeben werden. !!!
+2. Create Docker user with SUDO rights, copy SSH key.
+User "docker" with password "docker" is created here.
+!!! the command requires the password of the "user" to be entered. !!!
 
 --
 ansible-playbook playbook_create_docker_user.yml -K
 --
 
-3. Installation Docker und Docker-Compose mittel einer Rolle.
-Ausführung wird mit dem User "docker" gestartet.
-Hier muss das Kennwort "docker" für SUDO eigegeben werden.
+3. Install Docker and Docker-Compose using a role.
+Execution is started with the user "docker".
+The password "docker" must be entered here for SUDO authorization.
 
 -- 
 ansible-playbook playbook_install_docker_role.yml -K
