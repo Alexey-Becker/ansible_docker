@@ -1,6 +1,7 @@
 ---
 - name: Installation the Docker containerisation Software on DOCKER Servers
   hosts: DOCKER_SERVER
+  remote_user: docker
   become: true
   
   roles:
