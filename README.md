@@ -1,6 +1,6 @@
 Requirements:
 - OS Ubuntu 20.04
-- Host mus be reacheble over network over SSH
+- Host must be reacheble over network over SSH
 - User with SUDO rights
 - Change ip address in this file "./hosts.txt".
   Several IP addresses can be entered here, then the installation will be carried out on several systems at the same time
