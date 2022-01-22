@@ -5,9 +5,9 @@ Voraussetzung:
 - In der Datei "./hosts.txt" die IP Adressen anpassen.
   Hier dürfen mehrere Systeme hinterlegt werden, dann erfolgt die Installation automatisiert auf mehreren Systemen.
 - In der Datei "./gorup_vars/DOCKER_SERVER" den Parameter "ansible_ssh_private_key_file" anpassen.
-  Hier den Pfad zu eigenem SSH private Key hinterlegen.
+  Hier den Pfad zu eigenem SSH private Key hinterlegen. (Example /home/user/.ssh/id_rsa)
 - In der Datei "./playbook_create_docker_user.yml" den Parameter "key" unter "autorized_key" anpassen.
-  Hier den Pfad zu eigenem SSH private Key hinterlegen.
+  Hier den Pfad zu eigenem SSH public Key hinterlegen. (Example /home/user/.ssh/id_rsa.pub)
 
 Reihenfolge:
 1. SSH Key auf dem remote Host ohne Docker User hinterlegen.
