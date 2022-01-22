@@ -3,5 +3,5 @@
 owner                        : Alexey Becker
 # username on remote host
 ansible_user                 : remote_user
-# SSH private Key
+# SSH private key
 ansible_ssh_private_key_file : /keys/id_rsa
