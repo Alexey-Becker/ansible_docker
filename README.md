@@ -4,12 +4,14 @@ Requirements:
 - User with SUDO rights
 - Change ip address in this file "./hosts.txt".
   Several IP addresses can be entered here, then the installation will be carried out on several systems at the same time
-- Change this parameter "ansible_ssh_private_key_file" in folowing files "./gorup_vars/DOCKER_SERVER" & "ansible_ssh_private_key_file".
+- Change this parameter "ansible_user" in "./group_vars/DOCKER_SERVER"
+  As value enter the username of remote system.
+- Change this parameter "ansible_ssh_private_key_file" in folowing files "./group_vars/DOCKER_SERVER" & "./roles/install_docker_server/vars/main.yml".
   As value enter the path to your own SSH private key here. (Example /home/user/.ssh/id_rsa)
-- In task 2. "autorized_key" change parameter "key" in folowing file "./playbook_create_docker_user.yml".
+- In task 3. "autorized_key" change parameter "key" in folowing file "./playbook_create_docker_user.yml".
   As value enter the path to your own SSH public key here. (Example /home/user/.ssh/id_rsa.pub)
 
-Reihenfolge:
+Steps:
 1. Copy SSH public key on remote host without docker user.
 Enter the correct IP address of the target system here.
 
